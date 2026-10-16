@@ -40,3 +40,5 @@ ax2.set_title("RATIO OF ERRORS")
 ax2.grid()
 fig.savefig("ratios.pdf", bbox_inches = "tight")
 plt.show()
+
+print("The averge ratio value is", np.average(RATIOS))
