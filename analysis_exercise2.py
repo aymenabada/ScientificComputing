@@ -21,24 +21,25 @@ ax.grid()
 fig.savefig("errorplot.pdf", bbox_inches = "tight")
 plt.show()
 
-length=len(ERRORS)-1
+length=len(ERRORS[:-1])
 RATIOS = []*length
 for i,iplus1 in zip(ERRORS[:-1], ERRORS[1:]):
     ratio = iplus1/i   
     RATIOS.append(ratio)
     
-
+lis = np.array([0,1.2])
 n=n[:-1]
 fig,ax2 = plt.subplots()
-ax2.plot(n, RATIOS, marker = 'o', color = 'purple', linestyle = 'none')
-ax2.plot(n, length * [0.5], linestyle = '-.', color = 'black', label = r'$\overline{\epsilon_{n}}$ = 0.499')
+ax2.plot(ERRORS[:-1], ERRORS[1:], marker = 'o', color = 'purple', linestyle = 'none')
+ax2.plot(lis, 0.5*lis, linestyle = '-.', color = 'black', label = r'$\frac{\partial\epsilon_{n+1}}{\partial\epsilon_n}$ = 0.499')
 ax2.legend()
 # ax2.plot(n, length * [0.4996201438494443], linestyle = '-.')
-ax2.set_xlabel("ITERATION NUMBER")
-ax2.set_ylabel("RATIOS")
-ax2.set_title("RATIO OF ERRORS")
+ax2.set_xlabel(r"$\epsilon_n$")
+ax2.set_ylabel(r"$\epsilon_{n+1}$")
+ax2.set_title("ERROR PLOT")
 ax2.grid()
-fig.savefig("ratios.pdf", bbox_inches = "tight")
+fig.savefig("errorvserrorplot.pdf", bbox_inches = "tight")
 plt.show()
 
-print("The averge ratio value is", np.average(RATIOS))
+print("The ratios of errors are", [float(ratio) for ratio in (RATIOS)], "and the average is", np.average(RATIOS))
+# print("The averge ratio value is", np.average(RATIOS))

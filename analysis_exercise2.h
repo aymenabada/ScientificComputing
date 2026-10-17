@@ -43,6 +43,6 @@ double newton_solver(double fct(double),
  
  // If we have not returned already, the iteration has not
  // converged and we bail out and abort the program. 
- std::cout << "ERROR: Iteration did not converge." << std::endl;
+ std::cout << "ERROR: Iteration did not converge. The discriminant is less than zero, so the function has no (real) roots." << std::endl;
  abort();
 }
